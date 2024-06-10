@@ -4,6 +4,7 @@
 
 Partint de la classe anterior on ens connectavem a l'API d'Spotify hem afegit dificultat i s'han utilitzat noves tècniques mètodes i llibreries per explotar amb més precisió les dades aportades.
 Un dels processos que hem fet ha estat: Crear JSON's de playlist utilitzant **offset** i processar-los després de recopilar-los. Posteriorment també s'haxplicat la llibreria **glob** nativa de Python que ens ha servit per obtneri tots els arxius excel generats al nostre projecte.
+
 --
  import json
  import glob
