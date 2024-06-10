@@ -25,5 +25,4 @@ _Exemple dataset 2002_:
 
 |               | Tecnologia/Llibreria | Definició i ús                             |
 |-----------------------|-----------------------|----------------------------------------|
-| <img src="https://gephi.org/gephi-lite/gephi-logo.svg" width="200px"> | Gephi                 | Eina de visualització de xarxes i gràfics, utilitzada per analitzar, explorar i visualitzar dades de xarxes complexes. Ampla aplicació en ciència de les xarxes, visualització de dades i investigació social. En el nostre cas com es vee a les captures, l'hem fet servir per fer visualitzacions interactives i veure les relacions entre artistes i gèneres mitjançant nodes |
-| GLOB LIBRARY | glob                 | Llibreria que permet obtenir informació dels fitxers de la carpeta i emmagatzar en un array filtrant amb instruccions com en el nostre cas que hem obtingut només els .json (`*:json`) |
+| <img src="[https://gephi.org/gephi-lite/gephi-logo.svg](https://datascientest.com/en/wp-content/uploads/sites/9/2024/01/beautiful-soup.png)" width="100px"> | Beautiful Soup                 | Beautiful Soup és un paquet Python per analitzar documents HTML i XML, inclosos els que tenen un marcatge incorrecte. Crea un arbre d'anàlisi per a documents que es poden utilitzar per extreure dades d'HTML, la qual cosa és útil per al raspat web. |
