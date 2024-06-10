@@ -85,6 +85,25 @@ Condicions especials:
 
     return notes_arreglades
   ```
+
+**Resultat final**
+  ```
+  dicc = {}
+  llista_final = []
+  
+  for i in range(len(alumnes)):
+      dicc = {
+          "Nom i cognoms ": alumnes[i] + ' ' + cognoms[i],
+          "Nota alumne (nº)": notes_arreglades[i],
+          "Avaluació ": notes_text[i],
+          "Diferencia de nota respecte la mitjana ": diferencia_mitjana[i],
+          "Diferencia de nota (%) respecte la mitjana ": diferencia_percent_mitjana[i]
+      }
+      llista_final.append(dicc)
+
+  df = pd.DataFrame(llista_final)
+  df.to_csv('alumnos_final.csv', index=False)
+  ```
 ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/1dd00c76-127a-4809-b4cb-d663b0b7445f)
 
 **Exercici 1.2**: Aquest dataset conté dades del canal de YouTube "KEXP" fins al 11/03/2024. Volem saber:
