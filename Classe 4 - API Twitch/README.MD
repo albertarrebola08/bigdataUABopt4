@@ -6,9 +6,35 @@
 Partint de la classe anterior on ens connectavem a l'API d'Spotify hem afegit dificultat i s'han utilitzat noves tècniques mètodes i llibreries per explotar amb més precisió les dades aportades.
 Un dels processos que hem fet ha estat: Crear JSON's de playlist utilitzant **offset** i processar-los després de recopilar-los. Posteriorment també s'haxplicat la llibreria **glob** nativa de Python que ens ha servit per obtneri tots els arxius excel generats al nostre projecte.
 
-
 <code>import json</code>
 <code>import glob</code>
+```
+#serveix per agafar elements d'una playlist més enllà dels 100 items.
+offset = 0
+
+def get_playlist(playlist,offset):
+    resposta = spotify.playlist_items(playlist,offset=offset)
+    with open(f"{playlist}-{offset}.json", "w", encoding="utf-8") as f:
+        json.dump(resposta, f, indent=4)
+
+
+    if resposta["next"] == None:
+        print("Final")
+        pass
+    else:
+        offset = offset + 100
+        print("nova petició")
+        get_playlist(playlist, offset)
+
+
+for playlist in playlist_list:
+    offset = 0
+    get_playlist(playlist,offset)
+"""
+
+files = glob.glob("*.json")
+print(files)
+```
 
 
 L'última part de la classe ha constat en configurar el nostre accés a l'API de Twitch. Hem creat un nou projecte i hem obtingut la les credencials per poder treballar amb ella. 
