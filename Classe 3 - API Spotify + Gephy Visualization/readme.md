@@ -104,19 +104,15 @@ S'ha utilitzat la playlist "!Arriba los ánimos!", generada pel propi Spotify fo
 - Soul
 - Rock / Soft Rock
 - Reggueton / Urbano (tenen una agrupació modular molt separada a la resta pero amb un tamany a considerar)
-
-  **Graph resultant:**
+  
 <img src="https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/e2c03681-a282-402a-82c8-bcf45531b578" width="500px"> <br>
 
-
-
-#### 3) Generar el graph 
-
+#### 3) Generar el graph
 ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/2f015f05-fef0-43f5-b6f8-862a33235bce)
 
 <hr>
 
-#### 4) Crear JSON's de playlist utilitzant l'offset i processar-los després de recopilar-los
+#### 4) Crear JSON's de playlist utilitzant l'offset i processar-los després de recopilar-los (Veure a la següent sessió)
 - import json
 - import glob
 
