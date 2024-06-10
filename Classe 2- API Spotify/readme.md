@@ -4,9 +4,25 @@
 
 
 Hem utilitzat <a href="https://developer.spotify.com/documentation/web-api">l'API de Spotify </a> per obtenir informació d'altres artistes relacionats a partir d'un ID. La llibreria externa que ens ofereixen funcions com la del script: _artist_related_artists(artist_id)_ és <a href="https://spotipy.readthedocs.io/en/2.22.1/">Spotipy</a>.
+```
+from spotipy.oauth2 import SpotifyClientCredentials
 
+api_client_id = ""
+api_client_secret = ""
+
+spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(api_client_id,api_client_secret))
+````
 Seguidament hem desenvolupat un petit script per obtenir artistes relacionats dels relacionats. És a dir en una escala de dos passos hem aconseguit multiplicar l'informació per cadascún dels primers artistes afins.
 
+**Explicació del codi**
+
+Després d'haver realitzat la connexió amb Spotipy, agafem l'ID de l'artista que ens interessa i utilitzem la funció ```artist_related_artist(artist_id)``` per emmagatzemar els artistes relacionats
+```
+artist_id = '7ltDVBr6mKbRvohxheJ9h1'
+results = spotify.artist_related_artists(artist_id)
+
+artists = results['artists']
+```
 L'objectiu era guardar i mostrar tota aquesta informació en un format senzill i compatible així que hem emmagatzemat els resultats en un dataframe generat per nosaltres amb la llibreria Pandas i finalment hem volcat tota la informació en un arxiu d'excel anomenat _database.xlsx_
 
 ### Tecnologies i llibreries noves que hem utilitzat: 
