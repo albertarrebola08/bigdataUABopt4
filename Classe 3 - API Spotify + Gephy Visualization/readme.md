@@ -47,26 +47,68 @@ for i in llista_definitiva:
 ```
 Finalment es crea un DataFrame de Pandas (df) a partir de llista_tuples, amb les columnes "source" i "target". Es mostra el DataFrame a la consola amb print(df) i es guarda com un fitxer CSV anomenat graf.csv utilitzant <code>to_csv()</code> de Pandas.
 
-**Artista origen:** "Segismundo Toxicómano"
+**Graph resultant:** 
 
 _main.py_
 ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/c940e094-72a7-494a-8f9a-1df1198473ab)
 
 ### Tasques 
 #### 1) Incloure gèneres musicals al dataset i visualitzar les relacions mitjançant un Graph > _tasca1.py_
+```
+llista_tuples = []
+for i in llista_definitiva:
+    source= i["origen"]
+    target = i["desti"]
+    tupla = (source,target)
+    llista_tuples.append(tupla)
+
+for i in llista_definitiva:
+    for g in i["generes"]:
+        source = i["origen"]
+        target = g
+        tupla = (source,target)
+        llista_tuples.append(tupla)
+
+df = pd.DataFrame(llista_tuples, columns = ["source", "target"])
+
+print(df)
+df.to_csv("graf_generes.csv", sep=",", index=False)
+```
+**Graph resultant:**
 ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/a978f106-1207-4993-b0f4-b76519c97a18)
 
 <img src="https://cdn-icons-png.freepik.com/512/10748/10748293.png" width="40px">
 
 #### 2) Fer el mateix procés d'obtenció pero a partir d'una playlist. > _tasca2.py_
-<img src="https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/e2c03681-a282-402a-82c8-bcf45531b578" width="500px"> <br>
 
 El procés consistia en "alimentar" la funció treballada fins ara: _artist_related_artist(artist_id)_ passant com a argument l'artist_id obtingut dinàmicament desde un bucle for mitjançant una altra funció de l'API anomenada: _playlist_items(playlist_id)_.
+
+
+```result_playlist = spotify.playlist_items('37i9dQZF1DX7fvgalTu2lg')```
+
+El funcionament és molt similar pero el punt de partida surt de la iteració d'un bucle que agafa cada artista a partir de la playlist
+```
+for e in result_playlist['items']:
+    for artist_data in e['track']['artists']:
+        artist_id = artist_data['id']
+        artist_name = artist_data['name']
+```
+
+Finalment després de tenir totes les dades recopilades al dataframe creem el .csv:
+```
+df.to_csv("graf_playlist.csv", sep=",", index=False)
+```
+
 S'ha utilitzat la playlist "!Arriba los ánimos!", generada pel propi Spotify formada per 80 cançons. <br><br> M'ha semblat interessant estudiar quins artistes i gèneres considera Spotify que pujaran el nostre estat anímic. En aquest cas hi ha 3 que destaquen: 
 - Pop / Dance Pop
 - Soul
 - Rock / Soft Rock
 - Reggueton / Urbano (tenen una agrupació modular molt separada a la resta pero amb un tamany a considerar)
+
+  **Graph resultant:**
+<img src="https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/e2c03681-a282-402a-82c8-bcf45531b578" width="500px"> <br>
+
+
 
 #### 3) Generar el graph 
 
