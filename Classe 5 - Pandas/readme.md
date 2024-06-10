@@ -109,13 +109,46 @@ Condicions especials:
 **Exercici 1.2**: Aquest dataset conté dades del canal de YouTube "KEXP" fins al 11/03/2024. Volem saber:
 
 - Volum general: ¿Quantes files i columnes té el conjunt de dades complet?
+  ```
+  df = pd.read_csv("dataset.csv")
+  print(len(df))
+  ```
 - Composició del conjunt de dades: Quines columnes componen el conjunt de dades?
+  ```
+  print(df.columns)
+  ```
 - Calcula la desviació (absoluta i percentual) de cada vídeo sobre la mitjana d'espectadors/comentaris/m'agrada del canal.
+  ```
+  average_views = df['viewCount'].mean()
+  average_comments = df['commentCount'].mean()
+  average_likes = df['likeCount'].mean()
+  
+  
+  df['desviacio_absoluta_likes'] = df['likeCount'] - average_likes
+  df['desviacio_absoluta_comments'] = df['commentCount'] - average_comments
+  df['desviacio_absoluta_views'] = df['viewCount'] - average_views
+  
+  df['desviacio_%_likes'] = (df['likeCount'] - average_likes )/ average_likes * 100
+  df['desviacio_%_comments'] = (df['commentCount'] - average_comments )/ average_comments * 100
+  df['desviacio_%_views'] =(df['viewCount'] - average_views )/ average_views * 100
+  ```
 - Localitza el vídeo més vist.
+  ```
+  row_max_view_video = df.iloc[[df['viewCount'].idxmax()]]
+  print(row_max_view_video)
+  ```
 - Localitza el vídeo més comentat.
+  ```
+  row_max_comment_video = df.iloc[[df['commentCount'].idxmax()]]
+  print(row_max_comment_video)
+  ```
 - Crea una nova columna per a cadascun dels valors calculats anteriorment i crea un nou conjunt de dades final que incorpori tota la nova informació.
+  ```
+  df = df.drop(['channelId', 'categoryId', 'channelTitle', 'tags', 'publishedAt', 'blocked_at'], axis=1)
+  df.to_csv("final.csv")
+  ```
 - Calcula la durada en segons de cada vídeo i indica la seva desviació percentual sobre la mitjana de durada dels vídeos del canal. (Pendent de comprovació del docent) 
-
+  Pendent de realitzar amb suport del docent
 ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/afeacaea-1e38-4b3c-904b-2383011ea1fd)
 
 
