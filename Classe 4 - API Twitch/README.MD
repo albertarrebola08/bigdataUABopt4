@@ -6,8 +6,8 @@ Partint de la classe anterior on ens connectavem a l'API d'Spotify hem afegit di
 Un dels processos que hem fet ha estat: Crear JSON's de playlist utilitzant **offset** i processar-los després de recopilar-los. Posteriorment també s'haxplicat la llibreria **glob** nativa de Python que ens ha servit per obtneri tots els arxius excel generats al nostre projecte.
 
 --
- import json
- import glob
+import json
+import glob
 --
 
 L'última part de la classe ha constat en configurar el nostre accés a l'API de Twitch. Hem creat un nou projecte i hem obtingut la les credencials per poder treballar amb ella. 
