@@ -4,14 +4,57 @@
 En aquest codi s'automatitza la recopilació i organització de dades sobre el Festival de la Cançó d'Eurovisió des de la Viquipèdia i les guarda en un format convenient per a un posterior anàlisi o visualització. (.xlsx en aquest cas) 
 
 <hr>
+La llibreria utilitzada per l'extracció de dades ha estat Beautuful Soup.
+
+```
+import requests
+from bs4 import BeautifulSoup
+```
 
 **Exercici 1 (main.py)**
 - Utilitza web scraping per extreure dades de la pàgina de la Viquipèdia sobre el Festival de la Cançó d'Eurovisió per a cada any des del 2000 fins al 2023.
-- Després de recopilar les dades, les emmagatzema en un arxiu Excel separat per a cada any amb el format "datasetEurovision-{anyo}.xlsx".
-- Seguidament, llegeix els arxius Excel creats i els combina en un únic dataframe.
-- Modifica els noms de les columnes i afegeix una nova columna amb l'any de cada conjunt de dades.
-- Finalment, guarda el dataframe combinat en un nou arxiu Excel anomenat "final.xlsx".
+  ```
+  for anyo in range(2000,2024):
+    resposta = requests.get(f'https://es.wikipedia.org/wiki/Festival_de_la_Canci%C3%B3n_de_Eurovisi%C3%B3n_{anyo}')
+    try:
+        codi_web = resposta.text
+        soup = BeautifulSoup(codi_web, 'html.parser')
 
+        final = soup.find('span', id='Final')
+        tabla = final.find_next("table")
+  ```
+- Després de recopilar les dades, les emmagatzema en un arxiu Excel separat per a cada any amb el format "datasetEurovision-{anyo}.xlsx".
+  ```
+  df = pd.read_html(str(tabla))[0]
+  print(df)
+  print(f'Todo bien en {anyo}')
+  df.to_excel(f'datasetEurovision-{anyo}.xlsx', index=False)
+  time.sleep(1)
+  ```
+- Seguidament, llegeix els arxius Excel creats i els combina en un únic dataframe.
+  ```
+  files = glob.glob("*.xlsx")
+  list_dfs = []
+  
+  for f in files :
+      df = pd.read_excel(f)
+      any = f.split('-')[1].split('.')[0]
+      list_dfs.append(df)
+  ```
+- Modifica els noms de les columnes i afegeix una nova columna amb l'any de cada conjunt de dades.
+  ```
+  df['año'] = any
+  df.columns.values[2] = "Cantante(s)"
+  df.columns.values[5] = "Puntos"
+  df.columns.values[0] = "N."
+  ```
+
+- Finalment, guarda el dataframe combinat en un nou arxiu Excel anomenat "final.xlsx".
+  ```
+  final_df = pd.concat(list_dfs)
+  final_df.to_excel("final.xlsx", index=False)
+  ```
+  
 _Exemple dataset 2002_:
   > ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/faaf885a-b0b6-4b36-b224-965f97779b6b)
 
