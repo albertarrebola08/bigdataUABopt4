@@ -25,4 +25,4 @@ _Exemple dataset 2002_:
 
 |               | Tecnologia/Llibreria | Definició i ús                             |
 |-----------------------|-----------------------|----------------------------------------|
-| <img src="https://miro.medium.com/v2/resize:fit:772/0*oN9jA-Ad3mRlPAYy.png" width="100px"> | Beautiful Soup                 | Beautiful Soup és un paquet Python per analitzar documents HTML i XML, inclosos els que tenen un marcatge incorrecte. Crea un arbre d'anàlisi per a documents que es poden utilitzar per extreure dades d'HTML, la qual cosa és útil per al raspat web. |
+| <img src="https://miro.medium.com/v2/resize:fit:772/0*oN9jA-Ad3mRlPAYy.png" width="200px"> | Beautiful Soup                 | Beautiful Soup és un paquet Python per analitzar documents HTML i XML, inclosos els que tenen un marcatge incorrecte. Crea un arbre d'anàlisi per a documents que es poden utilitzar per extreure dades d'HTML, la qual cosa és útil per al raspat web. |
