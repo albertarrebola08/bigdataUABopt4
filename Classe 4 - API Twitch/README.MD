@@ -13,3 +13,40 @@ Un dels processos que hem fet ha estat: Crear JSON's de playlist utilitzant **of
 L'última part de la classe ha constat en configurar el nostre accés a l'API de Twitch. Hem creat un nou projecte i hem obtingut la les credencials per poder treballar amb ella. 
 
 __main.py__ utilitza aquesta API per obtenir streams: **get_streams** i agruparlos en diferents JSON's amb un identificador propi. Un nou mètode après i bastant imprescindible en l'obtenció de dades és time.sleep (de la llibreria time nativa de Python). Això el que ens permetrà és donar marge entre captacions de dades per evitar col·lapses i que Twith ens denegui l'accés.
+
+```
+
+# Hello Twitch API
+
+import json
+from twitchAPI.twitch import Twitch
+
+import time #serveix per "adormir" el loop i que no t'expulsi la api
+
+public = 'cutiivmivbqf6a20m8vglks60ydgna'
+secret  = '9wjsekajheogkqjnfvy5rcf10a3anv'
+
+twitch = Twitch(public, secret)
+
+next = None
+loop = 0
+def get_str(next, loop):
+    resposta = twitch.get_streams(after=next, language="es", first=100)
+    print(len(resposta['data']))
+    with open(f'{loop}.json', 'w', encoding='utf-8') as f:
+        json.dump(resposta, f, ensure_ascii=False, indent=4)
+
+    try:
+        next = resposta['pagination']['cursor']
+        print('hi ha nova pagina')
+        loop = loop + 1
+        time.sleep(2) #afegim 2 segons abans de la seguent recaptació
+        get_str(next, loop)
+
+    except :
+        print('final')
+        pass
+
+get_str(next, loop)
+
+```
