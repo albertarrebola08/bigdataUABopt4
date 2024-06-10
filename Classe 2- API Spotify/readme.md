@@ -23,7 +23,80 @@ results = spotify.artist_related_artists(artist_id)
 
 artists = results['artists']
 ```
-L'objectiu era guardar i mostrar tota aquesta informació en un format senzill i compatible així que hem emmagatzemat els resultats en un dataframe generat per nosaltres amb la llibreria Pandas i finalment hem volcat tota la informació en un arxiu d'excel anomenat _database.xlsx_
+A continuació, en aquest bloc, es recorre una llista d'artistes (artists). Per a cada artista, s'extreuen diversos atributs com ara el nom, l'ID, els seguidors, l'enllaç de Spotify, la popularitat, el tipus, l'URI, l'href, els gèneres i una llista d'imatges. Aquestes dades s'utilitzen per crear un DataFrame de Pandas (frame) que s'afegeix a una llista anomenada llista_artistes.
+```
+llista_artistes = []
+
+for a in artists:
+    name = a['name']
+    id = a['id']
+    followers = a['followers']['total']
+    enlace = a['external_urls']['spotify']
+    popularity = a['popularity']
+    tipo = a['type']
+    uri = a['uri']
+    href = a['href']
+
+    genres = ', '.join(a['genres'])
+    images_list = ', '.join(image['url'] for image in a['images'])
+
+
+    frame = pd.DataFrame({
+        "Nom": name,
+        "Tipus": tipo,
+        "Followers": followers,
+        "Link": enlace,
+        "Popularitat": popularity,
+        "Referencia": href,
+        "Generes": genres,
+        "Imatges": images_list,
+
+
+    }, index=[0])
+    llista_artistes.append(frame)
+```
+Un cop feta la primera iteració (primer nivell), es fa una segona passada per a cada artista principal a la llista artists, s'obtenen artistes relacionats utilitzant la funció spotify.artist_related_artists(). Es recopilen atributs similars per a cada artista relacionat i s'emmagatzemen en un nou DataFrame frame, que també s'afegeix a la llista llista_artistes.
+D'aquesta manera obtenim els relacionats dels relacionats.
+```
+for i in artists:
+    artist_id_related = i['id']
+    results2 = spotify.artist_related_artists(artist_id_related)
+    artists_related = results2['artists']
+    for a in artists_related:
+
+        name = a['name']
+        id = a['id'],
+        followers = a['followers']['total']
+        enlace = a['external_urls']['spotify']
+        popularity = a['popularity']
+        tipo = a['type']
+        uri = a['uri']
+        href = a['href']
+        genres = ','.join(a['genres'])
+        images_list = ','.join(image['url'] for image in a['images'])
+
+        frame = pd.DataFrame({
+            "Nom": name,
+            "Tipus": tipo,
+            "Followers": followers,
+            "Link": enlace,
+            "Popularitat": popularity,
+            "Referencia": href,
+            "Generes": genres,
+            "Imatges":images_list
+
+
+        }, index=[0])
+
+        llista_artistes.append(frame)
+```
+
+Per últim, L'objectiu era guardar i mostrar tota aquesta informació en un format senzill i compatible així que hem emmagatzemat els resultats en un dataframe generat per nosaltres amb la llibreria Pandas i finalment hem volcat tota la informació en un arxiu d'excel anomenat _database.xlsx_
+```
+final = pd.concat(llista_artistes)
+print(final)
+final.to_excel("dataset.xlsx")
+```
 
 ### Tecnologies i llibreries noves que hem utilitzat: 
 
