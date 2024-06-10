@@ -1,7 +1,51 @@
 # Classe 3 - API Spotify + Gephy Visualization
 > 27/02/2024
 > 
-Obtenir les relacions dels generes entre els artistes relacionats obtinguts a la classe anterior. S'emmagatzema les dades en un CSV i mitjançant pandas en un dataframe amb "source" i "target" que son els que Gephi interpretarà per mostrar l'esquema graph i podrem veure les relacions entre aquests generes en base als artistes.
+L'objectiu principal de la sessió és obtenir les relacions dels generes entre els artistes relacionats obtinguts a la classe anterior. S'emmagatzema les dades en un CSV i mitjançant pandas en un dataframe amb "source" i "target" que son els que Gephi interpretarà per mostrar l'esquema graph i podrem veure les relacions entre aquests generes en base als artistes.
+**Fases del codi**
+- Inicialització: Recopila informació d'artistes inicials i els afegeix a llista_de_relacionats.
+- Ampliació: Per a cada artista inicial, obté artistes relacionats i els afegeix a llista_definitiva.
+- Creació de tuples: Converteix els elements de llista_definitiva en tuples (source, target) i els afegeix a llista_tuples.
+- Exportació: Crea un DataFrame a partir de llista_tuples i l'exporta a un fitxer CSV.
+**Explicació del codi (main.py)**
+Un cop fetes les connexions amb Spotipy i l'importació de llibreries necessaries (explicat a la classe anterior), realitzem un primer bloc que recorre la llista d'artistes dins de result['artists']. Per a cada artista, crea un diccionari artista amb informació com l'origen ("segismuno toxicomano"), el nom de l'artista ("desti"), els gèneres, i l'ID. Afegeix aquest diccionari a la llista llista_de_relacionats.
+```for artist in result['artists']:
+    artista = {}
+    artista['origen'] = "segismuno toxicomano"
+    artista["desti"] = artist["name"]
+    artista["generes"] = artist["genres"]
+    artista["id"] = artist["id"]
+
+    llista_de_relacionats.append(artista)
+```
+A continuació inicialitza llista_definitiva i afegeix a aquesta llista cada element de llista_de_relacionats. Per a cada element, obté artistes relacionats utilitzant la funció get_related(id). Per a cada artista relacionat, crea un nou diccionari artista amb informació com l'origen (que és el nom de l'artista en el element original), el nom de l'artista ("desti"), els gèneres, i l'ID. Afegeix aquest nou diccionari a llista_definitiva.
+```
+llista_definitiva = []
+
+for element in llista_de_relacionats:
+    llista_definitiva.append(element)
+    id = element['id']
+    result = get_related(id)
+    for artist in result['artists']:
+        artista = {}
+        artista['origen'] = element["desti"]
+        artista["desti"] = artist["name"]
+        artista["generes"] = artist["genres"]
+        artista["id"] = artist["id"]
+
+        llista_definitiva.append(artista)
+```
+El següent bloc crea una llista de tuples llista_tuples. Per a cada element a llista_definitiva, extreu l'origen ("origen") i la destinació ("desti"), i crea una tupla (source, target). Aquesta tupla s'afegeix a llista_tuples.
+```
+llista_tuples = []
+for i in llista_definitiva:
+    source = i["origen"]
+    target = i["desti"]
+    tupla = (source, target)
+
+    llista_tuples.append(tupla)
+```
+Finalment es crea un DataFrame de Pandas (df) a partir de llista_tuples, amb les columnes "source" i "target". Es mostra el DataFrame a la consola amb print(df) i es guarda com un fitxer CSV anomenat graf.csv utilitzant <code>to_csv()</code> de Pandas.
 
 **Artista origen:** "Segismundo Toxicómano"
 
