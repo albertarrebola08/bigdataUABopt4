@@ -10,14 +10,14 @@ S'han realitzat 2 exercicis:
 
 - Columna: Nom i cognoms (en una única cadena de text) de cada alumne.
   ```
-notes = [1, 6, 8, 9, 10, 6, 5]
-alumnes = ["Jaume", "Carles", "Cristina", "Josep", "Rafael", "Agnès", "Marta"]
-cognoms = ["Tort", "Soldevila", "Luna", "Muñoz", "Fernandez", "Hernandez", "Llopart"]
-
-llista_noms_cognoms = []
-for i in range(len(alumnes)):
-    nombre_apellido = alumnes[i] + ' ' + cognoms[i]
-    llista_noms_cognoms.append(nombre_apellido)
+  notes = [1, 6, 8, 9, 10, 6, 5]
+  alumnes = ["Jaume", "Carles", "Cristina", "Josep", "Rafael", "Agnès", "Marta"]
+  cognoms = ["Tort", "Soldevila", "Luna", "Muñoz", "Fernandez", "Hernandez", "Llopart"]
+  
+  llista_noms_cognoms = []
+  for i in range(len(alumnes)):
+      nombre_apellido = alumnes[i] + ' ' + cognoms[i]
+      llista_noms_cognoms.append(nombre_apellido)
   ```
 - Columna: Nota de cada alumne.
 - Columna: Nota "en text" per a cada alumne:
