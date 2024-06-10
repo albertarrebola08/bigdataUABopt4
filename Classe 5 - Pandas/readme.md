@@ -147,8 +147,10 @@ Condicions especials:
   df = df.drop(['channelId', 'categoryId', 'channelTitle', 'tags', 'publishedAt', 'blocked_at'], axis=1)
   df.to_csv("final.csv")
   ```
-- Calcula la durada en segons de cada vídeo i indica la seva desviació percentual sobre la mitjana de durada dels vídeos del canal. (Pendent de comprovació del docent) 
-  Pendent de realitzar amb suport del docent
+- Calcula la durada en segons de cada vídeo i indica la seva desviació percentual sobre la mitjana de durada dels vídeos del canal. (Pendent de comprovació del docent)
+  
+    Pendent de realitzar amb suport del docent
+  
 ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/afeacaea-1e38-4b3c-904b-2383011ea1fd)
 
 
