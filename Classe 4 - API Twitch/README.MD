@@ -23,8 +23,9 @@ from twitchAPI.twitch import Twitch
 
 import time #serveix per "adormir" el loop i que no t'expulsi la api
 
-public = 'cutiivmivbqf6a20m8vglks60ydgna'
-secret  = '9wjsekajheogkqjnfvy5rcf10a3anv'
+#definim les credencials d'accés a l'API
+public = ''
+secret  = ''
 
 twitch = Twitch(public, secret)
 
