@@ -60,10 +60,28 @@ _Exemple dataset 2002_:
 
 **Exercici 2 (main2.py)**
 - Llegeix el dataframe obtingut al exercici anterior del fitxer "final.xlsx".
+  ```
+  df = pd.read_excel('final.xlsx')
+  ```
 - Per a cada fila del dataframe, realitza una cerca a través de l'API de Spotify utilitzant informació com el cantant, la cançó i l'any del Festival d'Eurovisió. Els resultats de la cerca s'emmagatzemen en un fitxer JSON anomenat "search.json".
   ![image](https://github.com/albertarrebola08/bigdataUABopt4/assets/104431726/ccb20c7b-f1f8-4a26-8aef-1b29f1c05840)
-- Es pausa l'execució durant 15 segons després de cada cerca per evitar superar els límits d'ús de l'API de Spotify. (poden ser menys segons, els 15 son per fer comprovacions del primer resultat amb tranquilitat).
+  ```
+  for index,row in df.iterrows():
+    artist = row["Cantante(s)"]
+    song = row["Canción"]
+    year = row["año"]
 
+    q = f'{song} {artist} {year} Eurovision'
+
+    result = spotify.search(q, limit=10, offset=0, type='track', market=None)
+    result['query'] = q
+    with open(f"search.json", "w", encoding="utf-8") as f:
+        json.dump(result, f, indent=4)
+  ```
+- Es pausa l'execució durant 15 segons després de cada cerca per evitar superar els límits d'ús de l'API de Spotify. (poden ser menys segons, els 15 son per fer comprovacions del primer resultat amb tranquilitat).
+  ```
+  time.sleep(15)
+  ````
 ### Tecnologies i llibreries noves que hem utilitzat: 
 
 |               | Tecnologia/Llibreria | Definició i ús                             |
