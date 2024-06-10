@@ -1,7 +1,7 @@
 # Estudi sobre la preocupació per la pèrdua del poder adquisitiu a Espanya i l'impacte a YouTube (2005-2023)
 Autors: Pau Cardús i Albert Arrebola
 
-<a href="https://projecte-final-big-data.vercel.app/">Veure informe web</a>
+<a target="__blank" href="https://projecte-final-big-data.vercel.app/">Veure informe web</a>
 
 ## Introducció
 Aquest estudi té com a objectiu analitzar la situació de perdua de poder adquisitiu a Espanya des del 2005 fins al 2023, utilitzant tècniques de big data. S'explorarà l'evolució dels salaris i dels preus, especialment l'Índex de Preus al Consum (IPC), per demostrar si la perdua de poder adquisitiu és un fenomen real. A més, es realitzaran anàlisis comparatives entre Catalunya i Espanya, s'analitzaran els salaris segons el nivell d'estudis i grups d'edat, així com l'IPC per grups de consum. Finalment mirarem l'impacte a YouTube tant desde el punt de vista de les cerques com dels videos penjats. 
