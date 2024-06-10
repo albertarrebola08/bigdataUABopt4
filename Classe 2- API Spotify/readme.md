@@ -91,7 +91,7 @@ for i in artists:
         llista_artistes.append(frame)
 ```
 
-Per últim, L'objectiu era guardar i mostrar tota aquesta informació en un format senzill i compatible així que hem emmagatzemat els resultats en un dataframe generat per nosaltres amb la llibreria Pandas i finalment hem volcat tota la informació en un arxiu d'excel anomenat _database.xlsx_
+Per últim, L'objectiu era guardar i mostrar tota aquesta informació en un format senzill i compatible així que hem emmagatzemat els resultats en un dataframe generat per nosaltres amb la llibreria Pandas i finalment hem volcat tota la informació en un arxiu d'excel anomenat _dataset.xlsx_
 ```
 final = pd.concat(llista_artistes)
 print(final)
